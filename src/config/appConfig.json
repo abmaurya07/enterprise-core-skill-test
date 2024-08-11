@@ -1,0 +1,7 @@
+{
+    "menuItems": [
+      { "name": "App1", "displayName": "Application 1" },
+      { "name": "App2", "displayName": "Application 2" }
+    ]
+  }
+  

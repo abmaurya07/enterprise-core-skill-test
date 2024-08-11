@@ -1,0 +1,25 @@
+{
+  "menuItems": [
+    {
+      "name": "App2",
+      "displayName": "Application 2"
+    }
+  ],
+  "components": [
+    {
+      "type": "RegistrationForm",
+      "displayName": "Registration Form V2",
+      "version": "v2"
+    },
+    {
+      "type": "UserProfile",
+      "displayName": "User Profile",
+      "version": "v1"
+    },
+    {
+      "type": "LoginForm",
+      "displayName": "Login Form V2",
+      "version": "v2"
+    }
+  ]
+}

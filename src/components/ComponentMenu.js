@@ -1,27 +1,42 @@
-import { setViewPanelComponent } from '@store/features/viewPanelComponentSlice';
-import { updateFeatureFlags } from '@store/features/featureFlagsSlice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// Actions from Redux Store
+import { setViewPanelComponent } from '@store/features/viewPanelComponentSlice';
+import { updateFeatureFlags } from '@store/features/featureFlagsSlice';
+import { Panel } from '@xyflow/react';
 
+
+
+//-------------------Component Menu-------------------
 const ComponentMenu = () => {
   const dispatch = useDispatch();
+
+  //Get the active application components from redux store
   const appComponents = useSelector(state => state.applications.appComponents);
+
+  //Get the feature flags from redux store
   const featureFlags = useSelector(state => state.featureFlags);
+  
+  //State to track the selected component
   const [selectedComponent, setSelectedComponent] = useState(null);
 
   useEffect(() => {
     setSelectedComponent(null);
   }, [appComponents]);
+
+  //  Function to handle component click
+  //  Will dispatch action to set the active component to render on view Panel
+  //  Will also set the selected component in format name-version
   const handleComponentClick = (name, version) => {
     dispatch(setViewPanelComponent({ name, version }));
-    setSelectedComponent(`${name}-${version}`); // Track the selected component
+    setSelectedComponent(`${name}-${version}`); 
   };
 
   const handleToggleFlag = (componentName, version) => {
-    // Check if the component exists in the feature flags, if not, initialize it
+    // Check if the component exists in the feature flags
     const componentExists = featureFlags[componentName] !== undefined;
     
-    // If the component does not exist, create a new object for it
+    // If the component does not exist, create a new empty object for it
     const updatedComponent = componentExists 
       ? featureFlags[componentName]
       : {};
@@ -33,9 +48,7 @@ const ComponentMenu = () => {
   
     // Update the feature flags with the toggled value
     const updatedFlags = {
-      ...featureFlags,
       [componentName]: {
-        ...updatedComponent,
         [version]: !currentStatus,
       },
     };
@@ -88,3 +101,4 @@ const ComponentMenu = () => {
 };
 
 export default ComponentMenu;
+

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import componentMap from "@UIComponents/index";
-import FeatureFlaggedComponent from "@UIComponents/FeatureFlaggedComponent";
-import ComponentMenu from "./ComponentMenu";
+import FeatureFlaggedComponent from "HOC/FeatureFlaggedComponent";
+import ComponentMenu from "@components/ComponentMenu";
 
 const DynamicViewPanel = () => {
   const activeApp = useSelector((state) => state.applications.activeApp);

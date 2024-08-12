@@ -1,5 +1,3 @@
-// LoginComponent.jsx
-
 import React, { useState } from 'react';
 
 const LoginForm = () => {
@@ -8,7 +6,6 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
     console.log('Email:', email);
     console.log('Password:', password);
   };

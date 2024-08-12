@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Component Breakdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## App.js
+- **Purpose**: The main entry component for the application.
+- **Key Functions**:
+  - **Rendering of Layout**: Serves as the container for the entire application.
+  - **Integration of Components**: Integrates components: `ApplicationSwitcher`, `TopLevelMenu`, and `DynamicViewPanel`.
+  - **Application State Management**: Connects to the Redux store to manage global state.
 
-## Available Scripts
+## ApplicationSwitcher.js
+- **Purpose**: Handles the switching between different applications or views within the main app.
+- **Key Functions**:
+  - **Conditional Rendering**: Based on  selected application, it renders the appropriate view.
+  - **State Management**: Interacts with Redux to determine which application is currently active.
 
-In the project directory, you can run:
+## ComponentMenu.js
+- **Purpose**: Provides a navigational menu for selecting different components within the active application.
+- **Key Functions**:
+  - **Menu Items**: Lists different components or views that users can navigate to.
+  - **Event Handling**: Captures user interaction and triggers appropriate actions (e.g., component change).
 
-### `npm start`
+## DynamicViewPanel.js
+- **Purpose**: A flexible panel component that dynamically loads and displays different views or components based on the application state.
+- **Key Functions**:
+  - **Dynamic Rendering**: Adjusts content based on current state, props, or user input.
+  - **Component Loading**: May include lazy loading for performance optimization.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## TopLevelMenu.js
+- **Purpose**: Serves as the primary navigation menu for the application, typically positioned at the top of the user interface.
+- **Key Functions**:
+  - **Navigation Links**: Provides links to major sections of the application.
+  - **Responsive Design**: Adjusts layout and visibility based on screen size or user preference.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Configuration Files Overview
 
-### `npm test`
+## appConfig.json
+- **Purpose**: Holds the application's configuration.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## featureFlags.json
+- **Purpose**: Manages feature flags, allowing the application to enable or disable features based on certain conditions.
+- **Key Sections**:
+  - **Flags List**: Contains a list of boolean flags that control whether specific features are active.
 
-### `npm run build`
+# Redux Store
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## store.js
+- **Purpose**: The central configuration file for Redux, where the application's state is managed. It combines reducers and sets up the Redux store.
+- **Key Functions**:
+  - **Combine Reducers**: Merges multiple reducers (e.g., `applicationsSlice`, `featureFlagsSlice`) into a single root reducer.
+  - **Store Initialization**: Creates the Redux store, making it accessible to the entire application through the `<Provider>` component in `index.js`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## applicationsSlice.js
+- **Purpose**: Manages state related to different applications within the app.
+- **Key Functions**:
+  - **Initial State**: Defines the initial state for application-related data (active application, list of application components).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## featureFlagsSlice.js
+- **Purpose**: Controls the state of feature flags, allowing features to be toggled on or off.
+- **Key Functions**:
+  - **Initial State**: Defines the initial state of all feature flags.
+  - **Reducers**: Handles actions that update the status of feature flags, enabling/disabling features.
+  - **Selectors**: Provides functions to access the state of specific feature flags.
 
-### `npm run eject`
+## sharedStateSlice.js
+- **Purpose**: Manages state that is shared across multiple components or sections of the application.
+- **Key Functions**:
+  - **Initial State**: Defines a generic state structure that can be used across different components.
+  - **Reducers**: Handles generic actions that affect shared state.
+  - **Selectors**: Allows components to access and modify shared state.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## viewPanelComponentSlice.js
+- **Purpose**: Manages the state of selected components to display within the dynamic view panel.
+- **Key Functions**:
+  - **Initial State**: Defines the default state of components rendered in the dynamic view panel.
+  - **Reducers**: Handles actions that affect which components are displayed within the panel.
+  - **Selectors**: Provides access to the state of the view panel components.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# UI Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **componentMap (index.js)**: Used to dynamically import the components using lazy load.
+- **LoginForm (V1 and V2)**
+- **RegistrationForm (V1 and V2)**
+- **SharedComponent.js**

@@ -12,11 +12,11 @@ const FeatureFlaggedComponent = ({ componentName,componentVersion, Component }) 
 
   return (
     <React.Suspense fallback={
-      <div className="flex items-center justify-center h-full">
+      <div className="flex items-center justify-center h-full border-dashed border-2 border-black rounded-lg">
         <div className="text-gray-600 text-lg">Loading...</div>
       </div>
     }>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 border-dashed border-2 border-black rounded-lg">
         <Component />
       </div>
     </React.Suspense>

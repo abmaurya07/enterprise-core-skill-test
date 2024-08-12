@@ -38,16 +38,16 @@ const DynamicViewPanel = () => {
   
 
   return (
-    <div className="p-6 gap-5 flex min-h-dvh">
+    <div className="p-6 gap-5 flex min-h-dvh ">
       { ComponentName && Component?
       //Render the Component if the component is found
-      <div className="flex-1">
+      <div className="flex-1 rounded-lg">
         <FeatureFlaggedComponent
           componentName={ComponentName}
           componentVersion={ComponentVersion}
           Component={Component}
         />
-      </div> : (<div className="flex-1 flex items-center justify-center min-h-screen bg-gray-100">
+      </div> : (<div className="flex-1 flex items-center justify-center min-h-screen bg-gray-100 border-dashed border-2 border-black rounded-lg">
         {ComponentName && !Component ? 'No Component Found in the directory' : 'No Component Selected'}
       </div>) //Display 'No Component Found' message if the component is not found in Component MAp.
       }

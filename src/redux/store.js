@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import appReducer from './features/appSlice';
-
-
+import applicationsReducer from './features/applicationsSlice';
+import viewPanelComponentReducer from './features/viewPanelComponentSlice';
+import sharedStateReducer from './features/sharedStateSlice';
+import featureFlagsReducer  from './features/featureFlagsSlice';
 
 const store = configureStore({
   reducer: {
-    app: appReducer,
+    applications: applicationsReducer,
+    viewPanelComponent: viewPanelComponentReducer,
+    sharedState: sharedStateReducer,
+    featureFlags: featureFlagsReducer 
   },
 });
 

@@ -1,41 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import componentMap from '@UIComponents';
+import React from "react";
+import { useSelector } from "react-redux";
+import componentMap from "@UIComponents/index";
+import FeatureFlaggedComponent from "@UIComponents/FeatureFlaggedComponent";
+import ComponentMenu from "./ComponentMenu";
 
 const DynamicViewPanel = () => {
-  const { currentComponent, appConfig } = useSelector((state) => state.app);
-  const [DynamicComponent, setDynamicComponent] = useState(null);
+  const activeApp = useSelector((state) => state.applications.activeApp);
+  const { name: ComponentName, version: ComponentVersion } = useSelector(
+    (state) => state.viewPanelComponent
+  );
 
-  useEffect(() => {
-    if (currentComponent && appConfig) {
-      console.log('currentComponent', currentComponent);
-      const componentConfig = appConfig.components.find(comp => comp.type === currentComponent);
-      console.log('componentConfig', componentConfig);
-      if (componentConfig) {
-        const { type, version } = componentConfig;
-        const Component = componentMap[type]?.[version];
-        setDynamicComponent(() => Component);
-      }
-    }
-  }, [currentComponent, appConfig]);
+  const Component = componentMap[ComponentName]?.[ComponentVersion];
+
+  if (!activeApp) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        No App selected
+      </div>
+    );
+  }
+
+
+  
 
   return (
-    <div className="p-6 bg-gray-100 flex-1">
-      {DynamicComponent ? (
-        <React.Suspense fallback={
-          <div className="flex items-center justify-center h-full">
-            <div className="text-gray-600 text-lg">Loading...</div>
-          </div>
-        }>
-          <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <DynamicComponent />
-          </div>
-        </React.Suspense>
-      ) : (
-        <div className="flex items-center justify-center h-full">
-          <p className="text-gray-600 text-lg">Select a component from the menu.</p>
-        </div>
-      )}
+    <div className="p-6 gap-5 flex min-h-dvh">
+      { ComponentName && Component?
+      <div className="flex-1">
+        <FeatureFlaggedComponent
+          componentName={ComponentName}
+          componentVersion={ComponentVersion}
+          Component={Component}
+        />
+      </div> : <div className="flex-1 flex items-center justify-center min-h-screen bg-gray-100">
+        {ComponentName && !Component ? 'No Component Found in the directory' : 'No Component Selected'}
+      </div>
+      }
+      <ComponentMenu />
     </div>
   );
 };

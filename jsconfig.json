@@ -5,8 +5,11 @@
         "@components/*": ["components/*"],
         "@utils/*": ["utils/*"],
         "@styles/*": ["styles/*"],
-        "@UIComponents/*": ["UIComponents/*"]
-      }
+        "@UIComponents/*": ["UIComponents/*"],
+        "@config/*": ["config/*"],
+        "@store/*": ["redux/*"]
+      },
+      "resolveJsonModule": true
     },
     "include": ["src"]
   }

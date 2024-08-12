@@ -1,0 +1,15 @@
+{
+    "features": {
+      "RegistrationForm": {
+        "v1": true,
+        "v2": true
+      },
+      "FlowDiagram": {
+        "v1" : true
+      },
+      "AnotherComponent":{
+        "v1":true
+      }
+    }
+  }
+  

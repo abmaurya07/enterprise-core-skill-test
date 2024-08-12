@@ -1,6 +1,5 @@
 import {lazy} from 'react';
 
-
 const componentMap = {
   RegistrationForm: {
     v1: lazy(() => import('./RegistrationFormV1')),
@@ -12,7 +11,9 @@ const componentMap = {
   LoginForm: {
     v1: lazy(() => import('./LoginFormV1')),
     v2: lazy(() => import('./LoginFormV2'))
-
+  },
+  SharedComponent:{
+    v1: lazy(() => import('./SharedComponent'))
   }
 };
 

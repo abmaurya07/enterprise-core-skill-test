@@ -1,7 +1,36 @@
 {
-    "menuItems": [
-      { "name": "App1", "displayName": "Application 1" },
-      { "name": "App2", "displayName": "Application 2" }
-    ]
-  }
-  
+  "applications": [
+    {
+      "id": "app1",
+      "name": "User Management",
+      "menu": [
+        { "label": "Dashboard", "link": "/dashboard" },
+        { "label": "Users", "link": "/users" },
+        { "label": "Reports", "link": "/reports" }
+      ],
+      "components": [
+        { "name": "RegistrationForm", "version": "v2" },
+        { "name": "LoginForm", "version": "v1" },
+        { "name": "SharedComponent", "version": "v1" },
+        { "name": "FlowDiagram", "version": "v1"},
+        { "name": "FlowDiagram", "version": "v2"}
+
+      ]
+    },
+    {
+      "id": "app2",
+      "name": "Analytics Dashboard",
+      "menu": [
+        { "label": "Overview", "link": "/overview" },
+        { "label": "Charts", "link": "/charts" },
+        { "label": "Stats", "link": "/stats" }
+      ],
+      "components": [
+        { "name": "FlowDiagram", "version": "v1" },
+        { "name": "RegistrationForm", "version": "v2" },
+
+        { "name": "AnotherComponent", "version": "v1" }
+      ]
+    }
+  ]
+}
